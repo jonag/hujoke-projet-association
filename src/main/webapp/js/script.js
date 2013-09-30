@@ -14,12 +14,36 @@ jQuery.extend(jQuery.validator.messages, {
 });
 
 $(document).ready(function() {
+	
+	jQuery.validator.addMethod("noSpace", function(value, element) { 
+		return value.indexOf(" ") < 0 && value != ""; 
+	}, "Les espaces sont interdits.");
 
 	$('#sign-up-form').validate(
 			{
 				rules : {
+					login: {
+						noSpace: true
+					},
 					passwordConfirmation : {
-						equalTo : '#password'
+						equalTo : '#inputPassword'
+					}
+				},
+				errorClass: 'error help-inline',
+				highlight: function (element) {
+					$(element).closest('.control-group').addClass('error');
+				},
+				unhighlight: function (element) {
+					$(element).closest('.control-group').removeClass('error');
+				}
+			}
+		);
+	
+	$('#sign-in-form').validate(
+			{
+				rules : {
+					login: {
+						noSpace: true
 					}
 				},
 				errorClass: 'error help-inline',

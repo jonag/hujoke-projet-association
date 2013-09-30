@@ -10,7 +10,7 @@
 <%@ include file="fragments/messages.jspf"%>
 
 <div class="container container-signin">
-	<form class="form-horizontal" action="<c:url value="/sign-in"/>" method="POST">
+	<form id="sign-in-form" class="form-horizontal" action="<c:url value="/sign-in"/>" method="POST">
 		<h2>Veuillez vous connecter</h2>
 		<div class="control-group">
 			<label class="control-label" for="inputLogin">Identifiant</label>
