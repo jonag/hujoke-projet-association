@@ -1,4 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,34 +26,15 @@
 			</tr>
 		</thead>
 		<tbody>
+			<c:forEach items="${products}" var="product">
 			<tr>
-				<td>T1</td>
-				<td>Tee Shirt</td>
-				<td>55.6</td>
-				<td>12</td>
+				<td>${product.code}</td>
+				<td>${product.name}</td>
+				<td><fmt:formatNumber value="${product.price}" minFractionDigits="2" maxFractionDigits="2" /></td>
+				<td>${product.stock}</td>
 				<td><a href="#">Commander</a></td>
-			</tr>
-			<tr>
-				<td>C2</td>
-				<td>Cle USB</td>
-				<td>9.5</td>
-				<td>45</td>
-				<td><a href="#">Commander</a></td>
-			</tr>
-			<tr>
-				<td>S3</td>
-				<td>Stylo</td>
-				<td>3.7</td>
-				<td>34</td>
-				<td><a href="#">Commander</a></td>
-			</tr>
-			<tr>
-				<td>C4</td>
-				<td>Calculatrice</td>
-				<td>20.0</td>
-				<td>4</td>
-				<td><a href="#">Commander</a></td>
-			</tr>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>
