@@ -2,6 +2,7 @@ package com.emn.fila2.hujoke.association.service;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.emn.fila2.hujoke.association.dao.UserDao;
 import com.emn.fila2.hujoke.association.exception.FormException;
 import com.emn.fila2.hujoke.association.model.User;
 
@@ -21,10 +22,17 @@ public class SignUpFormService extends FormService {
 	
 	public User createUser(HttpServletRequest request) throws FormException {
 		User user = new User();
+		UserDao userDao = new UserDao();
 		
 		String login = getFieldValue(request, FIELD_LOGIN);
 		if (login == null) {
 			throw new FormException("Le champ identifiant est obligatoire.");
+		}
+		if (login.indexOf(" ") != -1) {
+			throw new FormException("Les espaces ne sont pas utilisés dans le nom d'utilisateur.");
+		}
+		if (userDao.findByLogin(login) != null) {
+			throw new FormException("Ce nom d'utilisateur est déjà utilisé.");
 		}
 		user.setLogin(login);
 		
@@ -39,6 +47,7 @@ public class SignUpFormService extends FormService {
 		if (password.equals(passwordConfirmation) == false) {
 			throw new FormException("Les deux mot de passe ne correspondent pas.");
 		}
+		// TODO Crypter le mot de passe
 		user.setPassword(password);
 		
 		String lastName = getFieldValue(request, FIELD_LASTNAME);
@@ -62,6 +71,7 @@ public class SignUpFormService extends FormService {
 		String city = getFieldValue(request, FIELD_CITY);
 		user.setCity(city);
 		
+		userDao.creer(user);
 		return user;
 	}
 }
