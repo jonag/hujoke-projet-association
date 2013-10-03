@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import com.emn.fila2.hujoke.association.model.User;
 
+@SuppressWarnings("unchecked")
 public class UserDao {
 	
 	// TODO Je n'ai pas réussi à utiliser l'injection de dépendence (via @PersistenceContext) pour récupérer l'EntityManager

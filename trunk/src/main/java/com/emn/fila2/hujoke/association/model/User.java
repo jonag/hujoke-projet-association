@@ -1,6 +1,9 @@
 package com.emn.fila2.hujoke.association.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -32,8 +35,12 @@ public class User implements Serializable {
 
 	@Column(name="ZIP_CODE")
 	private String zipCode;
+	
+	@Transient
+	private List<Product> panier;
 
 	public User() {
+		panier = new ArrayList<Product>();
 	}
 
 	public String getCity() {
@@ -100,4 +107,11 @@ public class User implements Serializable {
 		this.zipCode = zipCode;
 	}
 
+	public List<Product> getPanier() {
+		return panier;
+	}
+
+	public void setPanier(List<Product> panier) {
+		this.panier = panier;
+	}
 }

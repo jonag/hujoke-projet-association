@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Order
+ * Servlet implementation class Cart
  */
-@WebServlet(urlPatterns={"/order"})
-public class OrderController extends HttpServlet {
+@WebServlet(urlPatterns={"/cart"})
+public class CartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * La vue à afficher
 	 */
-	private static final String VIEW = "/WEB-INF/jsp/order.jsp";
+	private static final String VIEW = "/WEB-INF/jsp/cart.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
