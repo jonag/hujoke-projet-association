@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import com.emn.fila2.hujoke.association.model.Product;
 
+@SuppressWarnings("unchecked")
 public class ProductDao {
 	public List<Product> findAll() {
 		EntityManager em = EntityManagerProvider.getEntityManager();
