@@ -68,6 +68,6 @@ public class Product implements Serializable {
 		}
 		Product product = (Product) obj;
 		
-		return product.getCode() == this.getCode();
+		return product.getCode().equals(this.getCode());
 	}	
 }
