@@ -15,33 +15,43 @@ public class CartService {
 	
 	public void add(HttpServletRequest request) throws ServiceException {
 		String productCode = request.getParameter(PARAM_PRODUCT);
-		if (null != productCode) {
-			ProductDao productDao = new ProductDao();
-			Product product = productDao.find(productCode);
-			if (product == null) {
-				throw new ServiceException("Le produit n'existe pas.");
-			}
-			
-			User user = (User) request.getSession().getAttribute(ATTR_USER_SESSION);
-			List<Product> cart = user.getCart();
-			if (cart.contains(product) == false) {
-				cart.add(product);
-			}
+		if (productCode == null) {
+			throw new ServiceException("Le code du produit est manquant.");
+		}
+		
+		ProductDao productDao = new ProductDao();
+		Product product = productDao.find(productCode);
+		if (product == null) {
+			throw new ServiceException("Le produit n'existe pas.");
+		}
+		
+		User user = (User) request.getSession().getAttribute(ATTR_USER_SESSION);
+		if  (user == null) {
+			throw new ServiceException("Vous n'êtes plus connecté.");
+		}
+		List<Product> cart = user.getCart();
+		if (cart.contains(product) == false) {
+			cart.add(product);
 		}
 	}
 
 	public void remove(HttpServletRequest request) throws ServiceException {
 		String productCode = request.getParameter(PARAM_PRODUCT);
-		if (null != productCode) {
-			ProductDao productDao = new ProductDao();
-			Product product = productDao.find(productCode);
-			if (product == null) {
-				throw new ServiceException("Le produit n'existe pas.");
-			}
-			
-			User user = (User) request.getSession().getAttribute(ATTR_USER_SESSION);
-			List<Product> cart = user.getCart();
-			cart.remove(product);
+		if (productCode == null) {
+			throw new ServiceException("Le code du produit est manquant.");
 		}
+		
+		ProductDao productDao = new ProductDao();
+		Product product = productDao.find(productCode);
+		if (product == null) {
+			throw new ServiceException("Le produit n'existe pas.");
+		}
+		
+		User user = (User) request.getSession().getAttribute(ATTR_USER_SESSION);
+		if (null == user) {
+			throw new ServiceException("Vous n'êtes plus connecté.");
+		}
+		List<Product> cart = user.getCart();
+		cart.remove(product);
 	}
 }
