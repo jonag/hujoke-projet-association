@@ -37,10 +37,10 @@ public class User implements Serializable {
 	private String zipCode;
 	
 	@Transient
-	private List<Product> panier;
+	private List<Product> cart;
 
 	public User() {
-		panier = new ArrayList<Product>();
+		cart = new ArrayList<Product>();
 	}
 
 	public String getCity() {
@@ -107,11 +107,11 @@ public class User implements Serializable {
 		this.zipCode = zipCode;
 	}
 
-	public List<Product> getPanier() {
-		return panier;
+	public List<Product> getCart() {
+		return cart;
 	}
 
-	public void setPanier(List<Product> panier) {
-		this.panier = panier;
+	public void setCart(List<Product> panier) {
+		this.cart = panier;
 	}
 }

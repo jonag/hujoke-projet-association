@@ -8,7 +8,7 @@
 			<li class="${requestScope['javax.servlet.forward.servlet_path'] eq '/catalog' ? 'active' : ''}">
 				<a href="<c:url value="/catalog"/>">Articles</a></li>
 			<li class="${requestScope['javax.servlet.forward.servlet_path'] eq '/order' ? 'active' : ''}">
-				<a href="<c:url value="/cart"/>">Commande</a>
+				<a href="<c:url value="/cart"/>">Panier</a>
 			</li>
 		</ul>
 		<div class="pull-right">

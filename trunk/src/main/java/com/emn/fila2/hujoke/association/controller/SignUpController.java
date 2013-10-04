@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.emn.fila2.hujoke.association.exception.FormException;
+import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.User;
 import com.emn.fila2.hujoke.association.service.SignUpFormService;
 
@@ -44,7 +44,7 @@ public class SignUpController extends HttpServlet {
 			request.getSession().setAttribute(ATTR_USER_SESSION, user);
 			request.getSession().setAttribute(ATTR_INFO, "Votre compte a été créé.");
 			response.sendRedirect(request.getContextPath() + INDEX_PATH);
-		} catch (FormException e) {
+		} catch (ServiceException e) {
 			// Si une erreur survient pendant l'inscription on renvoi l'utilisateur vers la page d'inscription et on affiche le message d'erreur
 			request.getSession().setAttribute(ATTR_ERROR, e.getMessage());
 			getServletContext().getRequestDispatcher(VIEW).forward(request, response);

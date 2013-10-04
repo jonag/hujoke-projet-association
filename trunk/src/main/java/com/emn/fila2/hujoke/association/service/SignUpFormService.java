@@ -3,7 +3,7 @@ package com.emn.fila2.hujoke.association.service;
 import javax.servlet.http.HttpServletRequest;
 
 import com.emn.fila2.hujoke.association.dao.UserDao;
-import com.emn.fila2.hujoke.association.exception.FormException;
+import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.User;
 
 // TODO Création d'une interface ?
@@ -20,45 +20,45 @@ public class SignUpFormService extends FormService {
 	private static final String FIELD_ZIPCODE = "zipCode";
 	private static final String FIELD_CITY = "city";
 	
-	public User createUser(HttpServletRequest request) throws FormException {
+	public User createUser(HttpServletRequest request) throws ServiceException {
 		User user = new User();
 		UserDao userDao = new UserDao();
 		
 		String login = getFieldValue(request, FIELD_LOGIN);
 		if (login == null) {
-			throw new FormException("Le champ identifiant est obligatoire.");
+			throw new ServiceException("Le champ identifiant est obligatoire.");
 		}
 		if (login.indexOf(" ") != -1) {
-			throw new FormException("Les espaces ne sont pas utilisés dans le nom d'utilisateur.");
+			throw new ServiceException("Les espaces ne sont pas utilisés dans le nom d'utilisateur.");
 		}
 		if (userDao.findByLogin(login) != null) {
-			throw new FormException("Ce nom d'utilisateur est déjà utilisé.");
+			throw new ServiceException("Ce nom d'utilisateur est déjà utilisé.");
 		}
 		user.setLogin(login);
 		
 		String password = getFieldValue(request, FIELD_PASSWORD);
 		if (password == null) {
-			throw new FormException("Le champ mot de passe est obligatoire.");
+			throw new ServiceException("Le champ mot de passe est obligatoire.");
 		}
 		String passwordConfirmation = getFieldValue(request, FIELD_PASSWORD_CONFIRM);
 		if (passwordConfirmation == null) {
-			throw new FormException("Le champ confirmation du mot de passe est obligatoire.");
+			throw new ServiceException("Le champ confirmation du mot de passe est obligatoire.");
 		}
 		if (password.equals(passwordConfirmation) == false) {
-			throw new FormException("Les deux mot de passe ne correspondent pas.");
+			throw new ServiceException("Les deux mot de passe ne correspondent pas.");
 		}
 		// TODO Crypter le mot de passe
 		user.setPassword(password);
 		
 		String lastName = getFieldValue(request, FIELD_LASTNAME);
 		if (lastName == null) {
-			throw new FormException("Le champ nom de famille est obligatoire.");
+			throw new ServiceException("Le champ nom de famille est obligatoire.");
 		}
 		user.setLastName(lastName);
 		
 		String firstName = getFieldValue(request, FIELD_FIRSTNAME);
 		if (firstName == null) {
-			throw new FormException("Le champ prénom est obligatoire.");
+			throw new ServiceException("Le champ prénom est obligatoire.");
 		}
 		user.setFirstName(firstName);
 		
