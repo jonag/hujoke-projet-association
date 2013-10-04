@@ -26,12 +26,12 @@ public class AuthentificationFilter implements Filter {
 	/**
 	 * Chemin vers la page de connexion
 	 */
-	private static final String LOGIN_PATH = "/sign-in";
+	private static final String PATH_LOGIN = "/sign-in";
 	
 	/**
 	 * Chemin vers la page d'accueil
 	 */
-	private static final String INDEX_PATH = "/index";
+	private static final String PATH_INDEX = "/index";
 	
 	/**
 	 * Nom de l'attribut où est stocké l'utilisateur dans la session
@@ -57,11 +57,11 @@ public class AuthentificationFilter implements Filter {
 			// vers la page de connexion
 			if (req.getRequestURI().matches(req.getContextPath() + ANONYMOUS_AREA) == false
 					&& req.getSession().getAttribute(ATTR_USER_SESSION) == null) {
-				res.sendRedirect(req.getContextPath() + LOGIN_PATH); 
+				res.sendRedirect(req.getContextPath() + PATH_LOGIN); 
 			} else if (req.getRequestURI().matches(req.getContextPath() + ANONYMOUS_AREA) == true
 					&& req.getSession().getAttribute(ATTR_USER_SESSION) != null) {
 				// En revanche, si on essaye d'accéder à la page de sign-in/sign-up alors qu'on est déjà connecté on est renvoyé vers la page d'accueil
-				res.sendRedirect(req.getContextPath() + INDEX_PATH);
+				res.sendRedirect(req.getContextPath() + PATH_INDEX);
 			} else {
 				chain.doFilter(request, response);
 			}

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.emn.fila2.hujoke.association.exception.FormException;
+import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.User;
 import com.emn.fila2.hujoke.association.service.SignInFormService;
 
@@ -19,7 +19,7 @@ import com.emn.fila2.hujoke.association.service.SignInFormService;
 public class SignInController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/jsp/sign-in.jsp";
-	private static final String INDEX_PATH = "/index";
+	private static final String PATH_CART = "/index";
 	private static final String ATTR_USER_SESSION = "userSession";
 	private static final String ATTR_ERROR = "error";
 	private static final String ATTR_INFO = "info";
@@ -43,8 +43,8 @@ public class SignInController extends HttpServlet {
 			// L'identification s'est bien déroulée, on stocke l'objet en session et on redirige l'utilisateur vers la page d'accueil
 			request.getSession().setAttribute(ATTR_USER_SESSION, user);
 			request.getSession().setAttribute(ATTR_INFO, "Vous êtes maintenant connecté.");
-			response.sendRedirect(request.getContextPath() + INDEX_PATH);
-		} catch (FormException e) {
+			response.sendRedirect(request.getContextPath() + PATH_CART);
+		} catch (ServiceException e) {
 			// Si une erreur survient pendant la connexion on renvoi l'utilisateur vers la page de connexion et on affiche le message d'erreur
 			request.getSession().setAttribute(ATTR_ERROR, e.getMessage());
 			getServletContext().getRequestDispatcher(VIEW).forward(request, response);
