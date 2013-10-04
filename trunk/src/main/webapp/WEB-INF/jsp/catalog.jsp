@@ -32,7 +32,7 @@
 				<td>${product.name}</td>
 				<td><fmt:formatNumber value="${product.price}" minFractionDigits="2" maxFractionDigits="2" /></td>
 				<td>${product.stock}</td>
-				<td><a href="#">Commander</a></td>
+				<td><a href="<c:url value="/cart?action=add&product=${product.code}"/>">Ajouter au panier</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,29 +12,33 @@
 <%@ include file="fragments/messages.jspf"%>
 
 <div class="container">
-	<h2>Votre commande</h2>
+	<h2>Votre panier</h2>
 
-	<table class="table">
-		<thead>
+	<c:if test="${empty sessionScope.userSession.cart}">
+		Votre panier ne contient aucun article.
+	</c:if>
+	<c:if test="${not empty sessionScope.userSession.cart}">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Code</th>
+					<th>Nom</th>
+					<th>Prix</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach items="${sessionScope.userSession.cart}" var="product">
 			<tr>
-				<th>Code</th>
-				<th>Nom</th>
-				<th>Prix</th>
+				<td>${product.code}</td>
+				<td>${product.name}</td>
+				<td><fmt:formatNumber value="${product.price}" minFractionDigits="2" maxFractionDigits="2" /></td>
+				<td><a href="<c:url value="/cart?action=remove&product=${product.code}"/>">Retirer du panier</a></td>
 			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>C2</td>
-				<td>Cle USB</td>
-				<td>9.5</td>
-			</tr>
-			<tr>
-				<td>S3</td>
-				<td>Stylo</td>
-				<td>3.7</td>
-			</tr>
-		</tbody>
-	</table>
-	<a href="#" class="btn btn-danger">Annuler la commande</a>
+			</c:forEach>
+			</tbody>
+		</table>
+		<a href="#" class="btn btn-danger">Annuler la commande</a>
+	</c:if>
 </div>
 </html>
