@@ -1,7 +1,9 @@
 package com.emn.fila2.hujoke.association.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 
 @Entity
@@ -53,4 +55,19 @@ public class Product implements Serializable {
 		this.stock = stock;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Product product = (Product) obj;
+		
+		return product.getCode() == this.getCode();
+	}	
 }

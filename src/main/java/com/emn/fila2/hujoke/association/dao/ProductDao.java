@@ -15,4 +15,8 @@ public class ProductDao {
 		return (List<Product>) query.getResultList();
 	}
 
+	public Product find(String code) {
+		EntityManager em = EntityManagerProvider.getEntityManager();
+		return em.find(Product.class, code);
+	}
 }
