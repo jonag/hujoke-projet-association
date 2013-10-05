@@ -38,7 +38,8 @@
 			</c:forEach>
 			</tbody>
 		</table>
-		<a href="#" class="btn btn-danger">Annuler la commande</a>
+		<a href="<c:url value="/cart?action=order"/>" class="btn btn-success">Passer la commande</a>
+		<a href="<c:url value="/cart?action=clear"/>" class="btn btn-danger">Vider le panier</a>
 	</c:if>
 </div>
 </html>
