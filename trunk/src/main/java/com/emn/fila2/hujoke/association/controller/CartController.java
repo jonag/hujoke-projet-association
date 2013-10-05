@@ -20,10 +20,14 @@ public class CartController extends HttpServlet {
 	
 	private static final String VIEW = "/WEB-INF/jsp/cart.jsp";
 	private static final String PATH_CART = "/cart";
+	private static final String PATH_CATALOG = "/catalog";
 	private static final String PARAM_ACTION = "action";
 	private static final String ACTION_ADD = "add";
 	private static final String ACTION_REMOVE = "remove";
+	private static final String ACTION_CLEAR = "clear";
+	private static final String ACTION_ORDER = "order";
 	private static final String ATTR_ERROR = "error";
+	private static final String ATTR_INFO = "info";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,18 +36,23 @@ public class CartController extends HttpServlet {
 		String action = request.getParameter(PARAM_ACTION);
 		if (action != null) {
 			CartService cartService = new CartService();
-			if (action.equals(ACTION_ADD)) {
-				try {
+			try {
+				if (action.equals(ACTION_ADD)) {
 					cartService.add(request);
-				} catch (ServiceException e) {
-					request.getSession().setAttribute(ATTR_ERROR, e.getMessage());
-				}
-			} else if (action.equals(ACTION_REMOVE)) {
-				try {
+					request.getSession().setAttribute(ATTR_INFO, "Le produit a été ajouté au panier. "+
+							"<a href=\"" + request.getContextPath() + PATH_CATALOG + "\">Retour au catalogue.</a>");
+				} else if (action.equals(ACTION_REMOVE)) {
 					cartService.remove(request);
-				} catch (ServiceException e) {
-					request.getSession().setAttribute(ATTR_ERROR, e.getMessage());
+					request.getSession().setAttribute(ATTR_INFO, "Le produit a été retiré du panier.");
+				} else if (action.equals(ACTION_CLEAR)) {
+					cartService.clear(request);
+					request.getSession().setAttribute(ATTR_INFO, "Le panier a été vidé.");
+				} else if (action.equals(ACTION_ORDER)) {
+					cartService.order(request);
+					request.getSession().setAttribute(ATTR_INFO, "La commande a été passée.");
 				}
+			} catch (ServiceException e) {
+				request.getSession().setAttribute(ATTR_ERROR, e.getMessage());
 			}
 			response.sendRedirect(request.getContextPath() + PATH_CART);
 		} else {

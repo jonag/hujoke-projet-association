@@ -19,4 +19,13 @@ public class ProductDao {
 		EntityManager em = EntityManagerProvider.getEntityManager();
 		return em.find(Product.class, code);
 	}
+
+	public void merge(List<Product> products) {
+		EntityManager em = EntityManagerProvider.getEntityManager();
+		em.getTransaction().begin();
+		for (Product p : products) {
+			em.merge(p);
+		}
+		em.getTransaction().commit();
+	}
 }

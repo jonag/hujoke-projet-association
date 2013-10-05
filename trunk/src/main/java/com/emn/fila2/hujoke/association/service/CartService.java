@@ -54,4 +54,27 @@ public class CartService {
 		List<Product> cart = user.getCart();
 		cart.remove(product);
 	}
+
+	public void clear(HttpServletRequest request) throws ServiceException {
+		User user = (User) request.getSession().getAttribute(ATTR_USER_SESSION);
+		if (null == user) {
+			throw new ServiceException("Vous n'êtes plus connecté.");
+		}
+		List<Product> cart = user.getCart();
+		cart.clear();
+	}
+
+	public void order(HttpServletRequest request) throws ServiceException {
+		ProductDao productDao = new ProductDao();
+		User user = (User) request.getSession().getAttribute(ATTR_USER_SESSION);
+		if (null == user) {
+			throw new ServiceException("Vous n'êtes plus connecté.");
+		}
+		List<Product> cart = user.getCart();
+		for (Product p : cart) {
+			p.setStock(p.getStock() - 1);
+		}
+		productDao.merge(cart);
+		cart.clear();
+	}
 }
