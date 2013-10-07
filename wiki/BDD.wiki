@@ -1,6 +1,6 @@
 #summary Instructions pour la base données
 
-La base de données déjà initialisée peut être téléchargée ici : [http://bayfiles.net/file/Xv6H/p4iseE/hujoke-db-association.zip].
+La base de données déjà initialisée peut être téléchargée ici : [https://www.dropbox.com/s/akab1qjorjp3iej/hujoke-db-association.zip].
 
 Pour la lancer :
  * Sous windows : Lancer le fichier bin\startNetworkServer.bat
