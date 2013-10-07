@@ -6,26 +6,19 @@ import com.emn.fila2.hujoke.association.dao.UserDao;
 import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.User;
 import com.emn.fila2.hujoke.association.tools.MD5;
+import com.emn.fila2.hujoke.association.properties.Prop;
 
 // TODO Création d'une interface ?
 // TODO Relation avec la base de données : stockage et vérification si l'identifiant n'est pas déjà utilisé
 // TODO Ne pas stocker le mot de passe en clair
 
 public class SignUpFormService extends FormService {
-	private static final String FIELD_LOGIN = "login";
-	private static final String FIELD_PASSWORD = "password";
-	private static final String FIELD_PASSWORD_CONFIRM = "passwordConfirmation";
-	private static final String FIELD_LASTNAME = "lastName";
-	private static final String FIELD_FIRSTNAME = "firstName";
-	private static final String FIELD_STREET = "street";
-	private static final String FIELD_ZIPCODE = "zipCode";
-	private static final String FIELD_CITY = "city";
 	
 	public User createUser(HttpServletRequest request) throws ServiceException {
 		User user = new User();
 		UserDao userDao = new UserDao();
 		
-		String login = getFieldValue(request, FIELD_LOGIN);
+		String login = getFieldValue(request, Prop.get("field.login"));
 		if (login == null) {
 			throw new ServiceException("Le champ identifiant est obligatoire.");
 		}
@@ -37,11 +30,11 @@ public class SignUpFormService extends FormService {
 		}
 		user.setLogin(login);
 		
-		String password = getFieldValue(request, FIELD_PASSWORD);
+		String password = getFieldValue(request, Prop.get("field.password"));
 		if (password == null) {
 			throw new ServiceException("Le champ mot de passe est obligatoire.");
 		}
-		String passwordConfirmation = getFieldValue(request, FIELD_PASSWORD_CONFIRM);
+		String passwordConfirmation = getFieldValue(request, Prop.get("field.passwordconfirm"));
 		if (passwordConfirmation == null) {
 			throw new ServiceException("Le champ confirmation du mot de passe est obligatoire.");
 		}
@@ -51,25 +44,25 @@ public class SignUpFormService extends FormService {
 		password = MD5.hash(password);
 		user.setPassword(password);
 		
-		String lastName = getFieldValue(request, FIELD_LASTNAME);
+		String lastName = getFieldValue(request, Prop.get("field.lastName"));
 		if (lastName == null) {
 			throw new ServiceException("Le champ nom de famille est obligatoire.");
 		}
 		user.setLastName(lastName);
 		
-		String firstName = getFieldValue(request, FIELD_FIRSTNAME);
+		String firstName = getFieldValue(request, Prop.get("field.firstName"));
 		if (firstName == null) {
 			throw new ServiceException("Le champ prénom est obligatoire.");
 		}
 		user.setFirstName(firstName);
 		
-		String street = getFieldValue(request, FIELD_STREET);
+		String street = getFieldValue(request, Prop.get("field.street"));
 		user.setStreet(street);
 		
-		String zipCode = getFieldValue(request, FIELD_ZIPCODE);
+		String zipCode = getFieldValue(request, Prop.get("field.zipcode"));
 		user.setZipCode(zipCode);
 		
-		String city = getFieldValue(request, FIELD_CITY);
+		String city = getFieldValue(request, Prop.get("field.city"));
 		user.setCity(city);
 		
 		userDao.creer(user);

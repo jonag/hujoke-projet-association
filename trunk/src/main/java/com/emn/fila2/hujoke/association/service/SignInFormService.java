@@ -6,22 +6,21 @@ import com.emn.fila2.hujoke.association.dao.UserDao;
 import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.User;
 import com.emn.fila2.hujoke.association.tools.MD5;
+import com.emn.fila2.hujoke.association.properties.Prop;
 
 /*
  * TODO Il faut peut être faire une interface que ce service implémenterait afin de faciliter les tests ?
  */
 
 public class SignInFormService extends FormService {
-	private static final String FIELD_LOGIN = "login";
-	private static final String FIELD_PASSWORD = "password";
 	
 	public User connectUser(HttpServletRequest request) throws ServiceException {		
-		String login = getFieldValue(request, FIELD_LOGIN);
+		String login = getFieldValue(request, Prop.get("field.login"));
 		if (login == null) {
 			throw new ServiceException("Le champ identifiant est obligatoire");
 		}
 		
-		String password = getFieldValue(request, FIELD_PASSWORD);
+		String password = getFieldValue(request, Prop.get("field.password"));
 		if (password == null) {
 			throw new ServiceException("Le champ mot de passe est obligatoire");
 		}

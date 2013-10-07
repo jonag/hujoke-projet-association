@@ -8,13 +8,12 @@ import com.emn.fila2.hujoke.association.dao.ProductDao;
 import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.Product;
 import com.emn.fila2.hujoke.association.model.User;
+import com.emn.fila2.hujoke.association.properties.Prop;
 
 public class CartService {
-	private static final String PARAM_PRODUCT = "product";
-	private static final String ATTR_USER_SESSION = "userSession";
 	
 	public void add(HttpServletRequest request) throws ServiceException {
-		String productCode = request.getParameter(PARAM_PRODUCT);
+		String productCode = request.getParameter(Prop.get("param.product"));
 		if (productCode == null) {
 			throw new ServiceException("Le code du produit est manquant.");
 		}
@@ -25,7 +24,7 @@ public class CartService {
 			throw new ServiceException("Le produit n'existe pas.");
 		}
 		
-		User user = (User) request.getSession().getAttribute(ATTR_USER_SESSION);
+		User user = (User) request.getSession().getAttribute(Prop.get("attr.usersession"));
 		if  (user == null) {
 			throw new ServiceException("Vous n'êtes plus connecté.");
 		}
@@ -36,7 +35,7 @@ public class CartService {
 	}
 
 	public void remove(HttpServletRequest request) throws ServiceException {
-		String productCode = request.getParameter(PARAM_PRODUCT);
+		String productCode = request.getParameter(Prop.get("param.product"));
 		if (productCode == null) {
 			throw new ServiceException("Le code du produit est manquant.");
 		}
@@ -47,7 +46,7 @@ public class CartService {
 			throw new ServiceException("Le produit n'existe pas.");
 		}
 		
-		User user = (User) request.getSession().getAttribute(ATTR_USER_SESSION);
+		User user = (User) request.getSession().getAttribute(Prop.get("attr.usersession"));
 		if (null == user) {
 			throw new ServiceException("Vous n'êtes plus connecté.");
 		}
@@ -56,7 +55,7 @@ public class CartService {
 	}
 
 	public void clear(HttpServletRequest request) throws ServiceException {
-		User user = (User) request.getSession().getAttribute(ATTR_USER_SESSION);
+		User user = (User) request.getSession().getAttribute(Prop.get("attr.usersession"));
 		if (null == user) {
 			throw new ServiceException("Vous n'êtes plus connecté.");
 		}
@@ -66,7 +65,7 @@ public class CartService {
 
 	public void order(HttpServletRequest request) throws ServiceException {
 		ProductDao productDao = new ProductDao();
-		User user = (User) request.getSession().getAttribute(ATTR_USER_SESSION);
+		User user = (User) request.getSession().getAttribute(Prop.get("attr.usersession"));
 		if (null == user) {
 			throw new ServiceException("Vous n'êtes plus connecté.");
 		}
