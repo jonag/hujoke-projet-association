@@ -16,7 +16,7 @@
 
 	<ul>
 		<li><a href="<c:url value="/catalog"/>">Consulter les articles disponibles</a></li>
-		<li><a href="<c:url value="/order"/>">Consulter votre commande</a></li>
+		<li><a href="<c:url value="/cart"/>">Consulter votre commande</a></li>
 	</ul>
 </div>
 </html>
