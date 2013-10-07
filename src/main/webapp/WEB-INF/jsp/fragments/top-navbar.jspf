@@ -7,7 +7,7 @@
 				<a href="<c:url value="/index"/>">Accueil</a></li>
 			<li class="${requestScope['javax.servlet.forward.servlet_path'] eq '/catalog' ? 'active' : ''}">
 				<a href="<c:url value="/catalog"/>">Articles</a></li>
-			<li class="${requestScope['javax.servlet.forward.servlet_path'] eq '/order' ? 'active' : ''}">
+			<li class="${requestScope['javax.servlet.forward.servlet_path'] eq '/cart' ? 'active' : ''}">
 				<a href="<c:url value="/cart"/>">Panier</a>
 			</li>
 		</ul>
