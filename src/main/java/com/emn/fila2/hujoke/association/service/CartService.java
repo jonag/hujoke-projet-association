@@ -72,6 +72,12 @@ public class CartService {
 		}
 		List<Product> cart = user.getCart();
 		for (Product p : cart) {
+			productDao.refresh(p);
+			if (p.getStock() <= 0) {
+				throw new ServiceException("Le produit " + p.getName() + " n'est plus en stock.");
+			}
+		}
+		for (Product p : cart) {
 			p.setStock(p.getStock() - 1);
 		}
 		productDao.merge(cart);

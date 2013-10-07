@@ -28,4 +28,9 @@ public class ProductDao {
 		}
 		em.getTransaction().commit();
 	}
+	
+	public void refresh(Product product) {
+		EntityManager em = EntityManagerProvider.getEntityManager();
+		em.refresh(product);
+	}
 }
