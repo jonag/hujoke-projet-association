@@ -1,4 +1,4 @@
-package com.emn.fila2.hujoke.association.properties;
+package com.emn.fila2.hujoke.association.tools;
 
 import java.io.IOException;
 import java.util.Properties;

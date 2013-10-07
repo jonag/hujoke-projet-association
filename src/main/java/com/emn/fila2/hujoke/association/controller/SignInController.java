@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.User;
-import com.emn.fila2.hujoke.association.properties.Prop;
 import com.emn.fila2.hujoke.association.service.SignInFormService;
+import com.emn.fila2.hujoke.association.tools.Prop;
 
 /**
  * Servlet implementation class SignIn
  */
 @WebServlet(urlPatterns={"/sign-in"})
 public class SignInController extends HttpServlet {
+	static final long serialVersionUID = 2296238063120307088L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,7 +39,7 @@ public class SignInController extends HttpServlet {
 			// L'identification s'est bien déroulée, on stocke l'objet en session et on redirige l'utilisateur vers la page d'accueil
 			request.getSession().setAttribute(Prop.get("attr.usersession"), user);
 			request.getSession().setAttribute(Prop.get("attr.info"), "Vous êtes maintenant connecté.");
-			response.sendRedirect(request.getContextPath() + Prop.get("path.cart"));
+			response.sendRedirect(request.getContextPath() + Prop.get("path.index"));
 		} catch (ServiceException e) {
 			// Si une erreur survient pendant la connexion on renvoi l'utilisateur vers la page de connexion et on affiche le message d'erreur
 			request.getSession().setAttribute(Prop.get("attr.error"), e.getMessage());
