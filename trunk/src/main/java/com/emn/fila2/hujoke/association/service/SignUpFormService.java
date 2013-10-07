@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.emn.fila2.hujoke.association.dao.UserDao;
 import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.User;
+import com.emn.fila2.hujoke.association.tools.MD5;
 
 // TODO Création d'une interface ?
 // TODO Relation avec la base de données : stockage et vérification si l'identifiant n'est pas déjà utilisé
@@ -47,7 +48,7 @@ public class SignUpFormService extends FormService {
 		if (password.equals(passwordConfirmation) == false) {
 			throw new ServiceException("Les deux mot de passe ne correspondent pas.");
 		}
-		// TODO Crypter le mot de passe
+		password = MD5.hash(password);
 		user.setPassword(password);
 		
 		String lastName = getFieldValue(request, FIELD_LASTNAME);
