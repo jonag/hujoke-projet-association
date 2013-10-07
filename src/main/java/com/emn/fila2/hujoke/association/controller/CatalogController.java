@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.emn.fila2.hujoke.association.dao.ProductDao;
 import com.emn.fila2.hujoke.association.model.Product;
+import com.emn.fila2.hujoke.association.properties.Prop;
 
 /**
  * Servlet implementation class Catalog
@@ -18,11 +19,6 @@ import com.emn.fila2.hujoke.association.model.Product;
 @WebServlet(urlPatterns={"/catalog"})
 public class CatalogController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * La vue à afficher 
-	 */
-	private static final String VIEW = "/WEB-INF/jsp/catalog.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,6 +29,6 @@ public class CatalogController extends HttpServlet {
 		
 		// On transmet la liste des produits à la vue
 		request.setAttribute("products", products);
-		getServletContext().getRequestDispatcher(VIEW).forward(request, response);
+		getServletContext().getRequestDispatcher(Prop.get("view.catalog")).forward(request, response);
 	}
 }
