@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.emn.fila2.hujoke.association.dao.UserDao;
 import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.User;
+import com.emn.fila2.hujoke.association.tools.MD5;
 
 /*
  * TODO Il faut peut être faire une interface que ce service implémenterait afin de faciliter les tests ?
@@ -30,7 +31,7 @@ public class SignInFormService extends FormService {
 		if (user == null) {
 			throw new ServiceException("Le nom d'utilisateur n'existe pas");
 		}
-		// TODO Si on crypte le mot de passe de l'utilisateur il faut également crypter le mot de passe ici avant de faire le test
+		password = MD5.hash(password);
 		if (user.getPassword().equals(password) == false) {
 			throw new ServiceException("Le mot de passe n'est pas correct");
 		}
