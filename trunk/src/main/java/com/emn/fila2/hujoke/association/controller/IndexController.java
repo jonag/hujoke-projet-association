@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.emn.fila2.hujoke.association.properties.Prop;
+import com.emn.fila2.hujoke.association.tools.Prop;
 
 /**
  * Servlet implementation class Index

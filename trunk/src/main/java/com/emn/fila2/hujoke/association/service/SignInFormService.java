@@ -6,7 +6,7 @@ import com.emn.fila2.hujoke.association.dao.UserDao;
 import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.User;
 import com.emn.fila2.hujoke.association.tools.MD5;
-import com.emn.fila2.hujoke.association.properties.Prop;
+import com.emn.fila2.hujoke.association.tools.Prop;
 
 /*
  * TODO Il faut peut être faire une interface que ce service implémenterait afin de faciliter les tests ?

@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.emn.fila2.hujoke.association.dao.ProductDao;
 import com.emn.fila2.hujoke.association.model.Product;
-import com.emn.fila2.hujoke.association.properties.Prop;
+import com.emn.fila2.hujoke.association.tools.Prop;
 
 /**
  * Servlet implementation class Catalog
  */
 @WebServlet(urlPatterns={"/catalog"})
 public class CatalogController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3135072811926206828L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

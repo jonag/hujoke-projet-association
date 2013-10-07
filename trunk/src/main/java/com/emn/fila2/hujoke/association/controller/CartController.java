@@ -1,7 +1,6 @@
 package com.emn.fila2.hujoke.association.controller;
 
 import java.io.IOException;
-import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.emn.fila2.hujoke.association.exception.ServiceException;
-import com.emn.fila2.hujoke.association.properties.Prop;
 import com.emn.fila2.hujoke.association.service.CartService;
+import com.emn.fila2.hujoke.association.tools.Prop;
 
 /**
  * Servlet implementation class Cart
  */
 @WebServlet(urlPatterns={"/cart"})
 public class CartController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -539333408969572665L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

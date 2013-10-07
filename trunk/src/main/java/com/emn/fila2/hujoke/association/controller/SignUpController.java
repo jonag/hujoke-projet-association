@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.User;
-import com.emn.fila2.hujoke.association.properties.Prop;
 import com.emn.fila2.hujoke.association.service.SignUpFormService;
+import com.emn.fila2.hujoke.association.tools.Prop;
 
 /**
  * Servlet implementation class SignUpController
  */
 @WebServlet(urlPatterns={"/sign-up"})
 public class SignUpController extends HttpServlet {
+	private static final long serialVersionUID = 2650413671545548254L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,7 +39,7 @@ public class SignUpController extends HttpServlet {
 			// L'identification s'est bien déroulée, on stocke l'objet en session et on redirige l'utilisateur vers la page d'accueil
 			request.getSession().setAttribute(Prop.get("attr.usersession"), user);
 			request.getSession().setAttribute(Prop.get("attr.info"), "Votre compte a été créé.");
-			response.sendRedirect(request.getContextPath() + Prop.get("index.path"));
+			response.sendRedirect(request.getContextPath() + Prop.get("path.index"));
 		} catch (ServiceException e) {
 			// Si une erreur survient pendant l'inscription on renvoi l'utilisateur vers la page d'inscription et on affiche le message d'erreur
 			request.getSession().setAttribute(Prop.get("attr.error"), e.getMessage());

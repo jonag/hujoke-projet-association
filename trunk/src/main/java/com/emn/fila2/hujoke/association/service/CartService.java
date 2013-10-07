@@ -8,7 +8,7 @@ import com.emn.fila2.hujoke.association.dao.ProductDao;
 import com.emn.fila2.hujoke.association.exception.ServiceException;
 import com.emn.fila2.hujoke.association.model.Product;
 import com.emn.fila2.hujoke.association.model.User;
-import com.emn.fila2.hujoke.association.properties.Prop;
+import com.emn.fila2.hujoke.association.tools.Prop;
 
 public class CartService {
 	

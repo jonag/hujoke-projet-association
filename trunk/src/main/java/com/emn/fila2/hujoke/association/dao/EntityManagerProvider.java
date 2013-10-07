@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import com.emn.fila2.hujoke.association.properties.Prop;
+import com.emn.fila2.hujoke.association.tools.Prop;
 
 // TODO Cette classe n'est utile que parceque je n'ai pas réussi à utiliser l'injection de dépendence,
 // à supprimer si on arrive à l'utiliser
