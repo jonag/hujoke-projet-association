@@ -15,7 +15,7 @@
 		<div class="control-group">
 			<label class="control-label" for="inputLogin">Identifiant *</label>
 			<div class="controls">
-				<input type="text" name="login" id="inputLogin" required>
+				<input type="text" name="login" id="inputLogin" value="${param.login}" required>
 			</div>
 		</div>
 		<div class="control-group">
@@ -33,31 +33,31 @@
 		<div class="control-group">
 			<label class="control-label" for="inputLastName">Nom de famille *</label>
 			<div class="controls">
-				<input type="text" name="lastName" id="inputLastName" required>
+				<input type="text" name="lastName" id="inputLastName" value="${param.lastName}" required>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputFirstName">Prénom *</label>
 			<div class="controls">
-				<input type="text" name="firstName" id="inputFirstName" required>
+				<input type="text" name="firstName" id="inputFirstName" value="${param.firstName}" required>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputStreet">Adresse (rue)</label>
 			<div class="controls">
-				<input type="text" name="street" id="inputStreet">
+				<input type="text" name="street" id="inputStreet" value="${param.street}" >
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="intputZipCode">Code postal</label>
 			<div class="controls">
-				<input type="number" size="5" name="zipCode" id="intputZipCode">
+				<input type="text" name="zipCode" id="intputZipCode" value="${param.zipCode}" >
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="intputCity">Ville</label>
 			<div class="controls">
-				<input type="text" name="city" id="intputCity">
+				<input type="text" name="city" id="intputCity" value="${param.city}" >
 			</div>
 		</div>
 		<button class="btn btn-success btn-block" type="submit">S'enregistrer</button>

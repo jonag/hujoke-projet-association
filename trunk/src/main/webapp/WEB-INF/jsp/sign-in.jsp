@@ -15,7 +15,7 @@
 		<div class="control-group">
 			<label class="control-label" for="inputLogin">Identifiant</label>
 			<div class="controls">
-				<input type="text" name="login" id="inputLogin" placeholder="Identifiant" autofocus required>
+				<input type="text" name="login" id="inputLogin" value="${param.login}" placeholder="Identifiant" required>
 			</div>
 		</div>
 		<div class="control-group">
