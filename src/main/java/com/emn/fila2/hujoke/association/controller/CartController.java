@@ -31,7 +31,7 @@ public class CartController extends HttpServlet {
 					cartService.add(request);
 					request.getSession().setAttribute(Prop.get("attr.info"), "Le produit a été ajouté au panier. "+
 							"<a href=\"" + request.getContextPath() + Prop.get("path.catalog") + "\">Retour au catalogue.</a>");
-				} else if (action.equals(Prop.get("action.action"))) {
+				} else if (action.equals(Prop.get("action.remove"))) {
 					cartService.remove(request);
 					request.getSession().setAttribute(Prop.get("attr.info"), "Le produit a été retiré du panier.");
 				} else if (action.equals(Prop.get("action.clear"))) {
