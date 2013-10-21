@@ -1,4 +1,4 @@
-package com.emn.fila2.hujoke.association;
+package com.emn.fila2.hujoke.association.service;
 
 import static org.junit.Assert.*;
 
