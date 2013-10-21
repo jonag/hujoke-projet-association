@@ -20,12 +20,12 @@ public class ProductDaoTest {
 	@Test
 	public void testFindAll(){
 		List<Product> products = dao.findAll();
-		assertTrue(products.size() == 1);
+		assertTrue(products.size() == 4);
 	}
 	
 	@Test
 	public void testFind(){
-		Product product = dao.find("productTestFind");
+		Product product = dao.find("T1");
 		assertNotNull(product);
 	}
 	
